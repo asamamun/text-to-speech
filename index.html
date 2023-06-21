@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea></textarea>
+    <button id="talk">talk</button>
+    <script>
+        let speech = new SpeechSynthesisUtterance();
+        speech.lang = "en";
+        document.querySelector("#talk").addEventListener("click", () => {
+  speech.text = document.querySelector("textarea").value;
+  window.speechSynthesis.speak(speech);
+});
+
+/* let voices = []; // global array
+
+window.speechSynthesis.onvoiceschanged = () => {
+  // Get List of Voices
+  voices = window.speechSynthesis.getVoices();
+
+  // Initially set the First Voice in the Array.
+  speech.voice = voices[0];
+
+  // Set the Voice Select List. (Set the Index as the value, which we'll use later when the user updates the Voice using the Select Menu.)
+  let voiceSelect = document.querySelector("#voices");
+  voices.forEach((voice, i) => (voiceSelect.options[i] = new Option(voice.name, i)));
+}; */
+    </script>
+</body>
+</html>
