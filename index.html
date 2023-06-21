@@ -9,6 +9,40 @@
     <textarea></textarea>
     <button id="talk">talk</button>
     <script>
+        function date_to_humandate(datetime){
+    const dateStr = datetime.split(' ')[0];;
+const date = new Date(dateStr);
+
+// Define an array of month names
+const months = [
+  "January", "February", "March", "April", "May", "June", 
+  "July", "August", "September", "October", "November", "December"
+];
+
+// Define an array of ordinal suffixes
+const suffixes = ["st", "nd", "rd", "th"];
+
+// Extract the day, month, and year from the date object
+const day = date.getDate();
+const month = date.getMonth();
+const year = date.getFullYear();
+// console.log(day, month, year);
+// Get the ordinal suffix for the day
+let suffix;
+if (day >= 11 && day <= 13) {
+  suffix = suffixes[3];
+} else {
+  suffix = suffixes[(day - 1) % 10] || suffixes[3];
+}
+
+// Create the formatted date string
+const formattedDate = `${months[month]} ${day}${suffix}, ${year}`;
+return formattedDate;
+// console.log(formattedDate);
+
+}
+
+console.log(date_to_humandate("2022-07-05 10:13:21"));
         let speech = new SpeechSynthesisUtterance();
         speech.lang = "en";
         document.querySelector("#talk").addEventListener("click", () => {
